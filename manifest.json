@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Browser Bangs",
+  "version": "1.0",
+  "description": "Add DuckDuckGo bangs in your browser",
+  "homepage_url": "https://github.com/Lorenzo01111/BrowserBangs",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["https://duckduckgo.com/bang.js"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "omnibox": {
+    "keyword": "!"
+  }
+}
