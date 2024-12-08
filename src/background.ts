@@ -1,3 +1,4 @@
+// Manually generated typings from https://duckduckgo.com/bang.js
 type Bang = {
   c: string;
   d: string;
@@ -8,6 +9,7 @@ type Bang = {
   u: string;
 };
 
+// Fetch bangs from DuckDuckGo
 let bangs: Bang[] = [];
 
 fetchBangs();
@@ -26,6 +28,7 @@ async function fetchBangs() {
   }
 }
 
+// Support for omnibox using !
 chrome.omnibox.onInputEntered.addListener((text, disposition) => {
   const bang = text.trim();
   const bangsMatch = bangs.find((b) => b.t === bang);
@@ -38,11 +41,12 @@ chrome.omnibox.onInputEntered.addListener((text, disposition) => {
   else chrome.tabs.update({ url });
 });
 
+// Support for search engines
 chrome.webRequest.onBeforeRequest.addListener(
   (details) => {
     const url = new URL(details.url);
     const searchParams = url.searchParams;
-    const query = searchParams.get("q");
+    const query = searchParams.get("q") || searchParams.get("p");
     if (!query) return;
 
     const querySplit = query.split(" ");
@@ -62,7 +66,20 @@ chrome.webRequest.onBeforeRequest.addListener(
     };
   },
   {
-    urls: ["https://www.google.com/search*"],
+    urls: [
+      "https://www.google.com/search*",
+      "https://www.bing.com/search*",
+      "https://search.yahoo.com/search*",
+    ],
   },
   ["blocking"]
 );
+
+// Support for popup
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action !== "refresh") return;
+
+  fetchBangs().then(() => {
+    sendResponse({ bangs });
+  });
+});

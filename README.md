@@ -1,6 +1,6 @@
 # Browser Bangs
 
-> Add DuckDuckGo bangs in google
+> Add DuckDuckGo bangs in your browser.
 
 ![Demo Video](./preview/demo.gif)
 
@@ -17,3 +17,16 @@ Bangs are shortcuts that quickly take you to search results on other sites. For 
 ## List of Bangs
 
 You can find the list of bangs [here](https://duckduckgo.com/bang).
+
+## Supported Search Engines
+
+- Google
+- Bing
+- Yahoo
+
+## Building
+
+1. Clone the repository.
+2. Install the dependencies using `pnpm install`.
+3. Run the build script using `pnpm build`.
+4. Load the extension in your browser using the `dist` folder.
