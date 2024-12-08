@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Browser Bangs",
+  "version": "1.0",
+  "description": "Add DuckDuckGo bangs in google",
+  "homepage_url": "https://github.com/Lorenzo01111/BrowserBangs",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "https://duckduckgo.com/bang.js",
+    "https://www.google.com/search*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "omnibox": {
+    "keyword": "!"
+  }
+}

@@ -1,10 +1,8 @@
 # Browser Bangs
 
-> Add DuckDuckGo bangs in your browser
+> Add DuckDuckGo bangs in google
 
-![Demo Video](https://i.imgur.com/oMAn3Ab.gif)
-
-Doesn't load? Click [here](https://i.imgur.com/oMAn3Ab.gif) to view the demo video.
+![Demo Video](./preview/demo.gif)
 
 ## What are Bangs?
 
@@ -13,7 +11,8 @@ Bangs are shortcuts that quickly take you to search results on other sites. For 
 ## How to use Bangs?
 
 1. Go to the address bar of your browser.
-2. Type `!`, press TAB and type the bang keyword.
+2. Type your query and add your !bang in it.
+3. Press Enter.
 
 ## List of Bangs
 
