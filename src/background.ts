@@ -23,6 +23,8 @@ async function fetchBangs() {
 
     const data = await response.json();
     bangs = data;
+
+    chrome.storage.local.set({ bangs: JSON.stringify(bangs) });
   } catch (error) {
     console.error("Failed to fetch bangs:", error);
   }
@@ -40,40 +42,6 @@ chrome.omnibox.onInputEntered.addListener((text, disposition) => {
     chrome.tabs.create({ url });
   else chrome.tabs.update({ url });
 });
-
-// Support for search engines
-chrome.webRequest.onBeforeRequest.addListener(
-  (details) => {
-    const url = new URL(details.url);
-    const searchParams = url.searchParams;
-    const query = searchParams.get("q") || searchParams.get("p");
-    if (!query) return;
-
-    const querySplit = query.split(" ");
-    const bang = querySplit.find((q) => q.startsWith("!"))?.slice(1);
-    if (!bang) return;
-
-    const bangsMatch = bangs.find((b) => b.t === bang);
-    if (!bangsMatch) return;
-
-    const newUrl = bangsMatch.u.replace(
-      /{{{s}}}/g,
-      encodeURIComponent(query.replace(`!${bang}`, ""))
-    );
-
-    return {
-      redirectUrl: newUrl,
-    };
-  },
-  {
-    urls: [
-      "https://www.google.com/search*",
-      "https://www.bing.com/search*",
-      "https://search.yahoo.com/search*",
-    ],
-  },
-  ["blocking"]
-);
 
 // Support for popup
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

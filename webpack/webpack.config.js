@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     background: path.resolve(__dirname, "..", "src", "background.ts"),
     popup: path.resolve(__dirname, "..", "src", "popup.ts"),
+    handler: path.resolve(__dirname, "..", "src", "handler.ts"),
   },
   output: {
     path: path.join(__dirname, "../dist"),
