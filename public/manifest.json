@@ -25,5 +25,11 @@
 
   "omnibox": {
     "keyword": "!"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "browserbangs@lorenzo0111.me"
+    }
   }
 }
